@@ -1,0 +1,6 @@
+Revision history for Perl extension DateTime::Format::Epoch::ANSIDate.
+
+0.01  Mon Dec 30 21:10:02 2013
+	- original version; created by h2xs 1.23 with options
+		-AX -n DateTime::Format::Epoch::ANSIDate
+
