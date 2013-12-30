@@ -1,76 +1,75 @@
 package DateTime::Format::Epoch::ANSIDate;
 
-use 5.016003;
 use strict;
 use warnings;
+use vars qw($VERSION @ISA);
 
-require Exporter;
+$VERSION = '0.01';
 
-our @ISA = qw(Exporter);
+use DateTime;
+use DateTime::Format::Epoch;
 
-# Items to export into callers namespace by default. Note: do not export
-# names by default without a very good reason. Use EXPORT_OK instead.
-# Do not simply export all your public functions/methods/constants.
+@ISA = qw/DateTime::Format::Epoch/;
 
-# This allows declaration	use DateTime::Format::Epoch::ANSIDate ':all';
-# If you do not need this, moving things directly into @EXPORT or @EXPORT_OK
-# will save memory.
-our %EXPORT_TAGS = ( 'all' => [ qw(
-	
-) ] );
+my $epoch = DateTime->new(
+    year => 1600,
+    month => 12,
+    day => 31
+    );
 
-our @EXPORT_OK = ( @{ $EXPORT_TAGS{'all'} } );
-
-our @EXPORT = qw(
-	
-);
-
-our $VERSION = '0.01';
-
-
-# Preloaded methods go here.
+sub new {
+    my $class = shift;
+    return $class->SUPER::new(
+	epoch => $epoch,
+	unit => 1/86400,
+	type => 'int',
+	skip_leap_seconds => 1);
+}
 
 1;
 __END__
-# Below is stub documentation for your module. You'd better edit it!
-
 =head1 NAME
 
-DateTime::Format::Epoch::ANSIDate - Perl extension for blah blah blah
+DateTime::Format::Epoch::ANSIDate - Perl extension for converting DateTimes to/from ANSI Date
 
 =head1 SYNOPSIS
 
   use DateTime::Format::Epoch::ANSIDate;
-  blah blah blah
+  
+  my $dt = DateTime::Format::Epoch::ANSIDate->parse_datetime( $count );
+
+  DateTime::Format::Epoch::ANSIDate->format_datetime($dt);
+  # $count
+
+  my $formatter = DateTime::Format::Epoch::ANSIDate->new();
+  my $dt2 = $formatter->parse_datetime( $count );
+  $formatter->format_datetime($dt2);
 
 =head1 DESCRIPTION
 
-Stub documentation for DateTime::Format::Epoch::ANSIDate, created by h2xs. It looks like the
-author of the extension was negligent enough to leave the stub
-unedited.
+This module can convert a DateTime object (or any object that can be
+converted to a DateTime object) to the Ansi Date count. See
+L<DateTime::Format::Epoch::ANSIDate> for a description.
 
-Blah blah blah.
+=head1 METHODS
 
-=head2 EXPORT
+Most of the methods are the same as those in L<DateTime::Format::Epoch>.
+The only difference is the constructor.
 
-None by default.
+=over 4
 
+=item * new()
 
+Constructor of the formatter/parser object. It has no parameters.
+
+=back
 
 =head1 SEE ALSO
 
-Mention other useful documentation such as the documentation of
-related modules or operating system documentation (such as man pages
-in UNIX), or any relevant external documentation such as RFCs or
-standards.
-
-If you have a mailing list set up for your module, mention it here.
-
-If you have a web site set up for your module, mention it here.
 
 =head1 AUTHOR
 
-Julio Molina Soler, E<lt>julio@(none)E<gt>
+Julio Molina Soler, E<lt>julio.molina@telenet.beE<gt>
 
 =head1 COPYRIGHT AND LICENSE
 
@@ -78,7 +77,7 @@ Copyright (C) 2013 by Julio Molina Soler
 
 This library is free software; you can redistribute it and/or modify
 it under the same terms as Perl itself, either Perl version 5.16.3 or,
-at your option, any later version of Perl 5 you may have available.
+at your option, any version of Perl 5 you may have available.
 
 
 =cut

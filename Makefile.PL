@@ -8,5 +8,5 @@ WriteMakefile(
     PREREQ_PM         => {}, # e.g., Module::Name => 1.1
     ($] >= 5.005 ?     ## Add these new keywords supported since 5.005
       (ABSTRACT_FROM  => 'lib/DateTime/Format/Epoch/ANSIDate.pm', # retrieve abstract from module
-       AUTHOR         => 'Julio Molina Soler <julio@(none)>') : ()),
+       AUTHOR         => 'Julio Molina Soler <julio.molina@telenet.be>') : ()),
 );
